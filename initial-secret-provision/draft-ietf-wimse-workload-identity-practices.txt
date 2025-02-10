@@ -5,13 +5,13 @@
 Workload Identity in Multi System Environments   A. Schwenkschuster, Ed.
 Internet-Draft                                                     SPIRL
 Intended status: Informational                                B. Hofmann
-Expires: 7 August 2025                                     H. Tschofenig
+Expires: 14 August 2025                                    H. Tschofenig
                                                                  Siemens
                                                              E. Giordano
                                                                    Nokia
                                                             Y. Rosomakho
                                                                  Zscaler
-                                                         3 February 2025
+                                                        10 February 2025
 
 
                       Workload Identity Practices
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 August 2025.
+   This Internet-Draft will expire on 14 August 2025.
 
 Copyright Notice
 
@@ -71,7 +71,7 @@ Table of Contents
      3.1.  Overview
      3.2.  Credential issuance
        3.2.1.  Environment variable
-       3.2.2.  Volumes
+       3.2.2.  Files
        3.2.3.  Local APIs
      3.3.  Credential format
    4.  Security Recommendations
@@ -230,20 +230,20 @@ Table of Contents
    and the provided secrets should have a short-term validity, i.e., an
    initial secret during the set-up of the application.
 
-3.2.2.  Volumes
+3.2.2.  Files
 
-   Volumes, e.g., projected volumes in Kubernetes, allow to inject
-   credentials into a container through the file-system.  Such solutions
-   enable secret rotation, and access control on the injected secret
-   with standard operating system measure for files.
+   Files allow to inject credentials into a container through the file-
+   system primitives, e.g., Open, Close, etc.  Such solutions enable
+   secret rotation, and access control on the injected secret with
+   standard operating system measure for files.
 
-   *  1) access control to the mounted volume and/or file should be
-      configure to limit access from unauthorized applications.  E.g.,
-      on Linux solutions such as DAC (uid and guid) or MAC
-      (SELinux,AppArmor) are available.
+   *  1) access control to the mounted file should be configure to limit
+      access from unauthorized applications.  E.g., on Linux solutions
+      such as DAC (uid and guid) or MAC (SELinux,AppArmor) are
+      available.
 
-   *  2) isolating the mounted volumes from critical host OS paths and
-      processes is required.  E.g, on Linux this is achieved by
+   *  2) isolating the mounted shared memory from critical host OS paths
+      and processes is required.  E.g, on Linux this is achieved by
       utilising namespaces.
 
    *  3) credentials rotation requires a solution to detect near-to-
