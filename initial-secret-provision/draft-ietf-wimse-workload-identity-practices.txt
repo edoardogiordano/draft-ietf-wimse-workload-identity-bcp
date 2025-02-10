@@ -233,9 +233,9 @@ Table of Contents
 3.2.2.  Files
 
    Files allow to inject credentials into a container through the file-
-   system primitives, e.g., Open, Close, etc.  Such solutions enable
-   secret rotation, and access control on the injected secret with
-   standard operating system measure for files.
+   system and access them through primitives, e.g., Open, Close, etc.
+   Such solutions enable secret rotation, and access control on the
+   injected secret with standard operating system measure for files.
 
    *  1) access control to the mounted file should be configure to limit
       access from unauthorized applications.  E.g., on Linux solutions
